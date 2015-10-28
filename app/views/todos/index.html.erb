@@ -1,0 +1,46 @@
+<h1>Listing todos</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+	<th>Name</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Completed</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @todos.each do |todo| %>
+      <tr>
+	    <td><%= todo.name %></td>
+        <td><%= todo.title %></td>
+        <td><%= todo.description %></td>
+        <td>
+		<% if todo.completed %>
+		<i class="fa fa-thumbs-up"></i>
+		<% else %>
+		<i class="fa fa-thumbs-down"></i>
+		<% end %>
+		</td>
+        <td><%= link_to todo do%>
+			<i class="fa fa-caret-square-o-right"></i>
+		<% end %>	
+		</td>
+        <td><%= link_to edit_todo_path(todo) do%>
+		<i class="fa fa-pencil"></i>
+		<% end %> 
+		</td>
+        <td><%= link_to todo, method: :delete, data: { confirm: 'Are you sure?' } do%>
+		<i class="fa fa-times"></i>
+		<% end %>
+		</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Todo', new_todo_path %>
